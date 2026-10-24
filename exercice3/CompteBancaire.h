@@ -1,29 +1,21 @@
-#ifndef EXERCICE2_FACTURE_H_
-#define EXERCICE2_FACTURE_H_
-
-#include <iostream>
-#include <string>
-#include <vector>
-
-struct Article {
-    std::string nom;
-    float prixUnitaire;
-    int quantite;
-    float tauxTVA;
-};
-
-class Facture {
+#ifndef COMPTEBANCAIRE_H
+#define COMPTEBANCAIRE_H
+#include<iostream>
+class CompteBancaire {
 private:
-    std::vector<Article> articles;
+    double solde;
+    std::string numero;
 
 public:
-    void ajouterArticle(const std::string& nom, float prixUnitaire);
-    void ajouterArticle(const std::string& nom, float prixUnitaire, int quantite);
-    void ajouterArticle(const std::string& nom, float prixUnitaire, int quantite, float tauxTVA);
-    void afficherTotal() const;
 
-    Facture();
-    virtual ~Facture();
+    CompteBancaire(std::string numero);
+    CompteBancaire(std::string numero,double soldeInitial);
+
+    void afficherSolde();
+
+
+    void retrait(double montant);
+    void retrait(double montant, int code);
 };
 
-#endif /* EXERCICE2_FACTURE_H_ */
+#endif
