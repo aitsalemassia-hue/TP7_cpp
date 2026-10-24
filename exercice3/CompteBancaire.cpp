@@ -1,45 +1,40 @@
-#include "Facture.h"
-#include <iomanip>
+#include <iostream>
+#include "CompteBancaire.h"
 
-Facture::Facture() {
+#include <iostream>
+CompteBancaire::CompteBancaire(std::string numero):numero(numero) {
+
 }
 
-Facture::~Facture() {
+CompteBancaire::CompteBancaire(std::string numero,double soldeInitial):numero(numero){
+    solde = soldeInitial;
 }
 
-
-void Facture::ajouterArticle(const std::string& nom, float prixUnitaire) {
-    ajouterArticle(nom, prixUnitaire, 1, 0);
+void CompteBancaire::afficherSolde() {
+	std::cout << "le numero de compte  est : " << numero << std::endl;
+    std::cout << " le solde est : " << solde << std::endl;
 }
 
-
-void Facture::ajouterArticle(const std::string& nom, float prixUnitaire, int quantite) {
-    ajouterArticle(nom, prixUnitaire, quantite, 0);
-}
-
-
-void Facture::ajouterArticle(const std::string& nom, float prixUnitaire, int quantite, float tauxTVA) {
-    Article a;
-    a.nom = nom;
-    a.prixUnitaire = prixUnitaire;
-    a.quantite = quantite;
-    a.tauxTVA = tauxTVA;
-    articles.push_back(a);
-}
-
-void Facture::afficherTotal() const {
-    float total = 0.0f;
-    std::cout << std::fixed << std::setprecision(2);
-    std::cout << "les factures :" << std::endl;
-
-    for (size_t i = 0; i < articles.size(); i++) {
-        const Article& a = articles[i];
-        float ligne = a.prixUnitaire * a.quantite * (1 + a.tauxTVA / 100);
-        total += ligne;
-        std::cout << a.nom << " , " << a.quantite << " , " << a.prixUnitaire
-                  << " TVA: " << a.tauxTVA << "prix total d'article: "<<ligne  << std::endl;
+void CompteBancaire::retrait(double montant) {
+    if (montant <= 0) {
+        std::cout << "Montant invalide" << std::endl;
+    } else if (montant > 500) {
+        std::cout << "Montant superieur a 500 : code de securite requis" << std::endl;
+    } else if (montant > solde) {
+        std::cout << "Solde insuffisant" << std::endl;
+    } else {
+        solde -= montant;
     }
+}
 
-
-    std::cout << "TOTAL TTC : " << total  << std::endl;
+void CompteBancaire::retrait(double montant, int code) {
+    if (code != 1234) {
+        std::cout << "Code de securite incorrect" << std::endl;
+    } else if (montant <= 0) {
+        std::cout << "Montant invalide" << std::endl;
+    } else if (montant > solde) {
+        std::cout << "Solde insuffisant" << std::endl;
+    } else {
+        solde -= montant;
+    }
 }
