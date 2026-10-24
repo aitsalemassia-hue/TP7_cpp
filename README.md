@@ -17,6 +17,7 @@ Exercice 2 : Système de facturation – Surcharge de méthodes
 Exercice 3 : Banque – Constructeurs surchargés et logique métier
 
 
+<img width="853" height="288" alt="image" src="https://github.com/user-attachments/assets/fa7acbb0-98b7-4e9d-a8aa-0c428d5e582e" />
 
-<img width="445" height="106" alt="tp7-3" src="https://github.com/user-attachments/assets/1865d107-5a70-4703-80ad-763fd9bfccc3" />
+
 
